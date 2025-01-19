@@ -73,7 +73,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
   {
     id: '5',
     title: 'Photography Services',
-    description: 'Experienced tutor for Calculus and Linear Algebra.',
+    description: 'Professional photography services available for events and projects',
     price: 30,
     category: 'Services',
     condition: 'New',
