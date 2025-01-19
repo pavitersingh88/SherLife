@@ -1,11 +1,75 @@
 import React, { useState } from 'react';
-import { Search, Tag, DollarSign } from 'lucide-react';
+import { Search, Tag, DollarSign, Mail, Phone, X } from 'lucide-react';
 import type { MarketplaceListing } from '../types';
 import { MARKETPLACE_LISTINGS, MARKETPLACE_CATEGORIES } from '../data/marketplace';
+
+interface ContactModalProps {
+  listing: MarketplaceListing;
+  onClose: () => void;
+}
+
+function ContactModal({ listing, onClose }: ContactModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg w-full max-w-md p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold">Contact Seller</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        
+        <div className="space-y-4">
+          <div>
+            <p className="font-medium text-gray-700">Seller Name</p>
+            <p>{listing.sellerName}</p>
+          </div>
+          
+          {listing.sellerContact.email && (
+            <div className="flex items-center space-x-2">
+              <Mail className="w-5 h-5 text-gray-500" />
+              <div>
+                <p className="font-medium text-gray-700">Email</p>
+                <a 
+                  href={`mailto:${listing.sellerContact.email}`}
+                  className="text-indigo-600 hover:text-indigo-700"
+                >
+                  {listing.sellerContact.email}
+                </a>
+              </div>
+            </div>
+          )}
+          
+          {listing.sellerContact.phone && (
+            <div className="flex items-center space-x-2">
+              <Phone className="w-5 h-5 text-gray-500" />
+              <div>
+                <p className="font-medium text-gray-700">Phone</p>
+                <a 
+                  href={`tel:${listing.sellerContact.phone}`}
+                  className="text-indigo-600 hover:text-indigo-700"
+                >
+                  {listing.sellerContact.phone}
+                </a>
+              </div>
+            </div>
+          )}
+          
+          <div className="mt-2 pt-2 border-t">
+            <p className="text-sm text-gray-500">
+              Preferred contact method: {listing.sellerContact.preferredMethod}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Marketplace() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<typeof MARKETPLACE_CATEGORIES[number]>('All');
+  const [selectedListing, setSelectedListing] = useState<MarketplaceListing | null>(null);
 
   const filteredListings = MARKETPLACE_LISTINGS.filter(listing => {
     const matchesSearch = 
@@ -73,19 +137,30 @@ function Marketplace() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm line-clamp-2 mb-3">{listing.description}</p>
-              <div className="flex justify-between items-center">
+              <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center text-sm text-gray-500">
                   <Tag className="w-4 h-4 mr-1" />
                   <span>{listing.condition}</span>
                 </div>
-                <button className="px-3 py-1.5 bg-[#013767] text-white text-sm rounded-lg hover:bg-[#012d56] transition-colors">
-                  Contact Seller
+                <button
+                  onClick={() => setSelectedListing(listing)}
+                  className="px-3 py-1.5 bg-[#013767] text-white text-sm rounded-lg hover:bg-[#012d56] transition-colors"
+                >
+                  Seller Contact
                 </button>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Contact Modal */}
+      {selectedListing && (
+        <ContactModal
+          listing={selectedListing}
+          onClose={() => setSelectedListing(null)}
+        />
+      )}
 
       {filteredListings.length === 0 && (
         <div className="text-center py-12">

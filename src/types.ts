@@ -32,6 +32,11 @@ export interface MarketplaceListing {
   images: string[];
   sellerId: string;
   sellerName: string;
+  sellerContact: {
+    email: string;
+    phone?: string;
+    preferredMethod: 'email' | 'phone';
+  };
   createdAt: Date;
   status: 'Available' | 'Sold' | 'Reserved';
 }

@@ -10,9 +10,14 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Like New',
     images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c'],
     sellerId: 'user1',
-    sellerName: 'John Doe',
+    sellerName: 'Sharad Cooke',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'sharad@sheridancollege.ca',
+      phone: '647-555-0123',
+      preferredMethod: 'phone'
+    },
   },
   {
     id: '2',
@@ -23,9 +28,13 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0'],
     sellerId: 'user2',
-    sellerName: 'Jane Smith',
+    sellerName: 'Enoch Thakkar',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'enoch.thakkar@sheridancollege.ca',
+      preferredMethod: 'email'
+    },
   },
   {
     id: '3',
@@ -36,9 +45,13 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Like New',
     images: ['https://images.unsplash.com/photo-1556821840-3a63f95609a7'],
     sellerId: 'user3',
-    sellerName: 'Bob Johnson',
+    sellerName: 'Team Paine',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'team.paine@sheridancollege.ca',
+      preferredMethod: 'email'
+    },
   },
   {
     id: '4',
@@ -49,9 +62,13 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267'],
     sellerId: 'user4',
-    sellerName: 'Alice Brown',
+    sellerName: 'Saad Brown',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'saad.brown@sheridancollege.ca',
+      preferredMethod: 'phone'
+    },
   },
   {
     id: '5',
@@ -62,9 +79,13 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'New',
     images: ['https://images.unsplash.com/photo-1434030216411-0b793f4b4173'],
     sellerId: 'user5',
-    sellerName: 'Eve Wilson',
+    sellerName: 'Jack Cummings',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'jack.cummings@sheridancollege.ca',
+      preferredMethod: 'email'
+    },
   },
   {
     id: '6',
@@ -75,9 +96,13 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1517842645767-c639042777db'],
     sellerId: 'user6',
-    sellerName: 'Charlie Davis',
+    sellerName: 'Chris Davis',
     createdAt: new Date(),
-    status: 'Available'
+    status: 'Available',
+    sellerContact: {
+      email: 'chris.davis@sheridancollege.ca',
+      preferredMethod: 'email'
+    },
   }
 ];
 
