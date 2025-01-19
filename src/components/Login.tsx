@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,13 +10,37 @@ function Login() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const createUserProfile = async (userId: string, email: string) => {
+    try {
+      await setDoc(doc(db, 'users', userId), {
+        userId,
+        email,
+        firstName: '',
+        lastName: '',
+        studentId: '',
+        programOfStudy: '',
+        interests: [],
+        description: '',
+        photoURL: '',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        isProfileComplete: false,
+        emailVerified: false
+      });
+    } catch (error) {
+      console.error('Error creating user profile:', error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
     try {
       if (isSignUp) {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await createUserProfile(userCredential.user.uid, email);
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
@@ -50,7 +75,8 @@ function Login() {
     setError('');
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      await createUserProfile(result.user.uid, result.user.email!);
     } catch (error: any) {
       if (error.code === 'auth/popup-closed-by-user') {
         setError('Sign in was cancelled.');

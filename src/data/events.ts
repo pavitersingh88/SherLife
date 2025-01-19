@@ -8,7 +8,9 @@ export const EVENT_LISTINGS: Event[] = [
     date: new Date('2025-03-15T13:00:00'),
     location: 'Davis Campus - SCAET Building',
     link: 'https://careers.sheridancollege.ca',
-    category: 'Career'
+    category: 'Career',
+    organizerId: 'admin',
+    createdAt: new Date()
   },
   {
     id: '2',
@@ -17,7 +19,9 @@ export const EVENT_LISTINGS: Event[] = [
     date: new Date('2025-04-20T18:00:00'),
     location: 'Trafalgar Campus - Student Union',
     link: 'https://www.sheridancollege.ca/events/end-of-semester-party',
-    category: 'Social'
+    category: 'Social',
+    organizerId: 'admin',
+    createdAt: new Date()
   }
 ];
 

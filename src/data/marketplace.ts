@@ -10,6 +10,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Like New',
     images: ['https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c'],
     sellerId: 'user1',
+    sellerName: 'John Doe',
     createdAt: new Date(),
     status: 'Available'
   },
@@ -22,6 +23,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0'],
     sellerId: 'user2',
+    sellerName: 'Jane Smith',
     createdAt: new Date(),
     status: 'Available'
   },
@@ -34,6 +36,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Like New',
     images: ['https://images.unsplash.com/photo-1556821840-3a63f95609a7'],
     sellerId: 'user3',
+    sellerName: 'Bob Johnson',
     createdAt: new Date(),
     status: 'Available'
   },
@@ -46,6 +49,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267'],
     sellerId: 'user4',
+    sellerName: 'Alice Brown',
     createdAt: new Date(),
     status: 'Available'
   },
@@ -58,6 +62,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'New',
     images: ['https://images.unsplash.com/photo-1434030216411-0b793f4b4173'],
     sellerId: 'user5',
+    sellerName: 'Eve Wilson',
     createdAt: new Date(),
     status: 'Available'
   },
@@ -70,6 +75,7 @@ export const MARKETPLACE_LISTINGS: MarketplaceListing[] = [
     condition: 'Good',
     images: ['https://images.unsplash.com/photo-1517842645767-c639042777db'],
     sellerId: 'user6',
+    sellerName: 'Charlie Davis',
     createdAt: new Date(),
     status: 'Available'
   }

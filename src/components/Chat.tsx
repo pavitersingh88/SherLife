@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, where, orderBy, onSnapshot } from 'firebase/firestore';
-import { useAuth0 } from '@auth0/auth0-react';
+import { auth } from '../config/firebase';
 import { Send } from 'lucide-react';
 import { db } from '../config/firebase';
 import type { Message } from '../types';
@@ -12,17 +12,16 @@ interface ChatProps {
 }
 
 function Chat({ listingId, sellerId, onClose }: ChatProps) {
-  const { user } = useAuth0();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
-    if (!user) return;
+    if (!auth.currentUser) return;
 
     const chatQuery = query(
       collection(db, 'chats'),
       where('listingId', '==', listingId),
-      where('participants', 'array-contains', user.sub),
+      where('participants', 'array-contains', auth.currentUser.uid),
       orderBy('timestamp', 'asc')
     );
 
@@ -35,21 +34,21 @@ function Chat({ listingId, sellerId, onClose }: ChatProps) {
     });
 
     return () => unsubscribe();
-  }, [listingId, user]);
+  }, [listingId]);
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim() || !user) return;
+    if (!newMessage.trim() || !auth.currentUser) return;
 
     try {
       await addDoc(collection(db, 'chats'), {
         listingId,
         content: newMessage,
-        senderId: user.sub,
-        senderName: user.name,
+        senderId: auth.currentUser.uid,
+        senderName: auth.currentUser.displayName || 'Anonymous',
         receiverId: sellerId,
         timestamp: new Date(),
-        participants: [user.sub, sellerId]
+        participants: [auth.currentUser.uid, sellerId]
       });
       setNewMessage('');
     } catch (error) {
@@ -71,11 +70,11 @@ function Chat({ listingId, sellerId, onClose }: ChatProps) {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.senderId === user?.sub ? 'justify-end' : 'justify-start'}`}
+              className={`flex ${message.senderId === auth.currentUser?.uid ? 'justify-end' : 'justify-start'}`}
             >
               <div
                 className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                  message.senderId === user?.sub
+                  message.senderId === auth.currentUser?.uid
                     ? 'bg-indigo-600 text-white'
                     : 'bg-gray-100 text-gray-900'
                 }`}
