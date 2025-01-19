@@ -12,19 +12,19 @@ const RESOURCES = [
     title: 'Academic Calendar',
     description: 'Important dates, deadlines, and academic schedules',
     icon: Calendar,
-    link: 'https://www.sheridancollege.ca/calendar'
+    link: 'https://www.sheridancollege.ca/admissions/academic-calendar'
   },
   {
     title: 'Student Wellness',
     description: 'Mental health resources, counseling services, and wellness programs',
     icon: HeartPulse,
-    link: 'https://www.sheridancollege.ca/student-life/health-and-wellness'
+    link: 'https://central.sheridancollege.ca/student-wellness?check_logged_in=1'
   },
   {
-    title: 'Study Groups',
-    description: 'Find or create study groups for your courses',
+    title: 'Services Hub',
+    description: 'Find answer of any questions',
     icon: Users,
-    link: '#'
+    link: 'https://hub.sheridancollege.ca/sheridan-service-hub'
   },
   {
     title: 'Academic Support',
@@ -36,7 +36,7 @@ const RESOURCES = [
     title: 'Career Resources',
     description: 'Job postings, resume building, and career counseling',
     icon: GraduationCap,
-    link: 'https://careers.sheridancollege.ca'
+    link: 'https://www.sheridancollege.ca/student-life/student-services/career-services'
   }
 ];
 
