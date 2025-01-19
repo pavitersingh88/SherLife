@@ -71,22 +71,6 @@ function Login() {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    setError('');
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      await createUserProfile(result.user.uid, result.user.email!);
-    } catch (error: any) {
-      if (error.code === 'auth/popup-closed-by-user') {
-        setError('Sign in was cancelled.');
-      } else {
-        setError('Could not sign in with Google. Please try again.');
-        console.error('Google sign in error:', error);
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
@@ -137,13 +121,6 @@ function Login() {
         </form>
 
         <div className="mt-6">
-          <button
-            onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-          >
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5 mr-2" />
-            Continue with Google
-          </button>
         </div>
 
         <div className="text-center mt-4">
